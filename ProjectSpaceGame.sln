@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectSpaceGame", "ProjectSpaceGame\ProjectSpaceGame\ProjectSpaceGame.csproj", "{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "ProjectSpaceGameContent", "ProjectSpaceGame\ProjectSpaceGameContent\ProjectSpaceGameContent.contentproj", "{22E38273-6EA1-4DD6-BF90-B6933C908C78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessiahSandbox", "MessiahSandbox\MessiahSandbox\MessiahSandbox.csproj", "{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8} = {EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearishSandbox", "BearishSandbox\BearishSandbox\BearishSandbox.csproj", "{3779F205-C438-42C4-B413-694DBC64B44D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Debug|x86.ActiveCfg = Debug|x86
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Debug|x86.Build.0 = Debug|x86
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Release|Any CPU.ActiveCfg = Release|x86
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Release|x86.ActiveCfg = Release|x86
+		{EE0DF749-2D25-4D1A-ADD3-90CEC472C7B8}.Release|x86.Build.0 = Release|x86
+		{22E38273-6EA1-4DD6-BF90-B6933C908C78}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{22E38273-6EA1-4DD6-BF90-B6933C908C78}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{22E38273-6EA1-4DD6-BF90-B6933C908C78}.Debug|x86.ActiveCfg = Debug|x86
+		{22E38273-6EA1-4DD6-BF90-B6933C908C78}.Release|Any CPU.ActiveCfg = Release|x86
+		{22E38273-6EA1-4DD6-BF90-B6933C908C78}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{22E38273-6EA1-4DD6-BF90-B6933C908C78}.Release|x86.ActiveCfg = Release|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Debug|x86.ActiveCfg = Debug|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Debug|x86.Build.0 = Debug|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Release|Any CPU.ActiveCfg = Release|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Release|x86.ActiveCfg = Release|x86
+		{E4B8E3FC-3FEB-44C8-B75A-03E2C0590C4D}.Release|x86.Build.0 = Release|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Debug|x86.ActiveCfg = Debug|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Debug|x86.Build.0 = Debug|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Release|Any CPU.ActiveCfg = Release|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Release|x86.ActiveCfg = Release|x86
+		{3779F205-C438-42C4-B413-694DBC64B44D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
