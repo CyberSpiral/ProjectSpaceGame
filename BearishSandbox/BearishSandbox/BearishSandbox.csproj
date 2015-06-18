@@ -75,8 +75,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="src\Game1.cs" />
+    <Compile Include="src\Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ProjectSpaceGame\ProjectSpaceGameContent\ProjectSpaceGameContent.contentproj">
@@ -110,6 +110,18 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="obj\x86\Debug\BearishSandbox.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\x86\Debug\ContentPipeline-{22E38273-6EA1-4DD6-BF90-B6933C908C78}.xml" />
+    <Content Include="obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\x86\Debug\Content\" />
+    <Folder Include="obj\x86\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
