@@ -21,6 +21,8 @@ namespace MessiahSandbox {
         }
 
         protected override void Initialize() {
+            Star _starTest = new Star("The Sun", 1.98855 * Math.Pow(10, 30), 6.955 * Math.Pow(10, 8));
+            Planet _planetTest = new Planet("Earth", 5.97219 * Math.Pow(10,24), 6378000, 0.01671, 1, _starTest);
             base.Initialize();
         }
 
