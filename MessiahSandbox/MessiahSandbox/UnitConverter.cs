@@ -23,6 +23,7 @@ namespace MessiahSandbox
         //public readonly double TO_JUPITER_RADIUS = 1.4304 * Math.Pow(10, -8);
         public readonly double TO_KILOMETER = 0.001;
         public readonly double TO_CENTIMETER = 100;
+        public readonly double TO_AU = 6.6846 * Math.Pow(10, -12);
 
         public readonly double FROM_SOLAR_RADIUS = 696342000;
         public readonly double FROM_EARTH_RADIUS = 6378100;
@@ -48,5 +49,9 @@ namespace MessiahSandbox
 
         public readonly double FROM_EARTH_DENSITY = 5514;
         public readonly double FROM_GRAM_PER_CUBIC_CENTIMETER = 1000;
+
+        //Velocity
+        public readonly double TO_METER_PER_SECOND = 9.81;
+        public readonly double TO_KILOMETER_PER_SECOND = 0.00981;
     }
 }
