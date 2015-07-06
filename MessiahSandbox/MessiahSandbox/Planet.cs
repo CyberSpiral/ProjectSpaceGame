@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace MessiahSandbox
     class Planet
     {
         private const double GRAVITATIONAL_CONSTANT = 6.674 * 0.00000000001;//Math.Pow(10, -11);
-        private const int METERS_PER_PIXELS = 160000000;
-        private const int GAME_TIME_SPEED = 10000;
+        private const int METERS_PER_PIXELS = 320000000;
+        private const float GAME_TIME_SPEED = 0.25f;
 
         private string _name;
         private string _type;
@@ -30,9 +31,16 @@ namespace MessiahSandbox
         private double _orbitalPeriod;
         private double _orbitalVelocity;
 
-        private double _distanceFromSun;
         private Vector2 _position;
         private Vector2 _origin;
+        private Vector2 _focus1;
+        private Vector2 _focus2;
+        private Vector2 _center;
+
+        private float _angle;
+        private double _fociDist;
+        private double _fociAngle;
+        
 
         private Texture2D _texture;
 
@@ -59,7 +67,6 @@ namespace MessiahSandbox
         /// </param>
         /// <param name="star"></param>
         public Planet(string name, double mass, double radius, double eccentricity, double semiMajorAxis, Star star) {
-            double pi = Math.PI;
             uc = new UnitConverter();
 
             _name = name;
@@ -79,9 +86,20 @@ namespace MessiahSandbox
             _orbitalPeriod = Math.Sqrt(Math.Pow(_semiMajorAxis, 3) / (_star.Mass * uc.TO_SOLAR_MASS));
             _orbitalVelocity = Math.Sqrt(_star.Mass * uc.TO_SOLAR_MASS / _semiMajorAxis) * 29.78;
 
-            _distanceFromSun = _apoapsis;
-            _position = new Vector2((int)(960 + _distanceFromSun / METERS_PER_PIXELS), 540);
             _origin = Vector2.Zero;
+
+            _angle = 0;
+
+            _focus1 = _star.Position;
+            _focus2 = new Vector2(_star.Position.X - ((float)(_apoapsis - _periapsis) / METERS_PER_PIXELS), _star.Position.Y); ;
+
+            _fociDist = Vector2.Distance(_focus2, _focus1);
+            _fociAngle = MathHelper.ToRadians(180) + Math.Atan2(_focus2.Y - _focus1.Y, _focus2.X - _focus1.X);
+            _center = new Vector2((_focus1.X + _focus2.X) / 2, (_focus1.Y + _focus2.Y) / 2);
+
+            _position.X = 960 - (float)_fociDist + (float)(_center.X + _semiMajorAxis * Math.Cos(_fociAngle)) / METERS_PER_PIXELS;
+            _position.Y = 540 + (float)(_center.Y + _semiMinorAxis * Math.Sin(_fociAngle)) / METERS_PER_PIXELS;
+
 
             Console.WriteLine(
                 "Name: {0}\n" +
@@ -102,32 +120,38 @@ namespace MessiahSandbox
                 _gravity, _escapeVelocity, _eccentricity, _semiMajorAxis * uc.TO_AU, _semiMinorAxis * uc.TO_AU, _periapsis * uc.TO_AU, _apoapsis * uc.TO_AU,
                 _orbitalPeriod, _orbitalVelocity);
 
-            Console.WriteLine("CURRENT SPEED = " + CurrentSpeed());
         }
 
         public void Update()
         {
-            Vector2 directionTowardsSun = _position - _star.Position;
-            float rotation = (float)Math.Atan2(directionTowardsSun.Y, directionTowardsSun.X) + MathHelper.ToRadians(90);
-            Vector2 direction = new Vector2((float)Math.Cos(rotation), (float)Math.Sin(rotation));
-            direction.Normalize();
+            double r = _semiMajorAxis * (1 - _eccentricity * _eccentricity) /
+                                        (1 - _eccentricity * Math.Cos(_angle));
+            _angle += MathHelper.ToRadians(GAME_TIME_SPEED);
 
-            _position -= direction * (float)(CurrentSpeed() / METERS_PER_PIXELS) * GAME_TIME_SPEED;
-            _distanceFromSun = Vector2.Distance(_position, _star.Position) * METERS_PER_PIXELS;
-            Console.WriteLine("CURRENT SPEED = " + CurrentSpeed());
+            double ct = Math.Cos(_angle);
+            double st = Math.Sin(_angle);
+            double cp = Math.Cos(_fociAngle);
+            double sp = Math.Sin(_fociAngle);
+
+            double x1 = r * ct - _fociDist / 2;
+            double y1 = r * st;
+            double x = _center.X + x1 * cp - y1 * sp;
+            double y = _center.Y + x1 * sp + y1 * cp;
+
+            _position.X = 960 - (float)_fociDist + (float)x / METERS_PER_PIXELS;
+            _position.Y = 540 + (float)y / METERS_PER_PIXELS;
+
+            Console.WriteLine(Vector2.Distance(_position, _focus1));
         }
+
+
 
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw(_texture, _position, null, Color.Blue, 0, _origin, 1, SpriteEffects.None, 0.5f);
+            //_spriteBatch.Draw(_texture, _center, null, Color.White, 0, _origin, 1, SpriteEffects.None, 0.5f);
+            //_spriteBatch.Draw(_texture, _focus2, null, Color.Red, 0, _origin, 1, SpriteEffects.None, 0.5f);
             
-        }
-
-        private double CurrentSpeed()
-        {
-            double standard_gravitational_parameter = GRAVITATIONAL_CONSTANT * _star.Mass;
-            //return Math.Sqrt(standard_gravitational_parameter / _semiMajorAxis);
-            return Math.Sqrt(standard_gravitational_parameter * (2 / _distanceFromSun  - 1 / _semiMajorAxis));
         }
 
         public Texture2D Texture
