@@ -16,6 +16,7 @@ namespace MessiahSandbox {
         SpriteBatch _spriteBatch;
         Star _starTest;
         Planet _planetTest;
+        Satellite _satelliteTest;
         Texture2D _celBodyTexture;
 
         public Game1() {
@@ -30,6 +31,9 @@ namespace MessiahSandbox {
             _starTest = new Star("The Sun", 1.98855 * Math.Pow(10, 30), 6.955 * Math.Pow(10, 8));
             //Planet with nearly identical values to Earth.
             _planetTest = new Planet("Earth", 5.97219 * Math.Pow(10,24), 6378000, 0.01671, 149597870700, _starTest);
+            //Satellite with nearly identical values to the Moon
+            _satelliteTest = new Satellite("The Moon", 7.3477 * Math.Pow(10,22), 1738140, 0.0549, 384399000, _planetTest);
+
             base.Initialize();
         }
 
@@ -38,6 +42,7 @@ namespace MessiahSandbox {
             _celBodyTexture = Content.Load<Texture2D>("CelBody");
             _starTest.Texture = _celBodyTexture;
             _planetTest.Texture = _celBodyTexture;
+            _satelliteTest.Texture = _celBodyTexture;
         }
 
         protected override void UnloadContent() {
@@ -46,6 +51,7 @@ namespace MessiahSandbox {
         protected override void Update(GameTime gameTime) {
             base.Update(gameTime);
             _planetTest.Update();
+            _satelliteTest.Update();
         }
 
         protected override void Draw(GameTime gameTime) {
@@ -54,6 +60,7 @@ namespace MessiahSandbox {
             _spriteBatch.Begin();
             _starTest.Draw(_spriteBatch);
             _planetTest.Draw(_spriteBatch);
+            _satelliteTest.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
