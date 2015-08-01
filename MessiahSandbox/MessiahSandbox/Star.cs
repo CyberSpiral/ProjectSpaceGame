@@ -7,25 +7,16 @@ using System.Text;
 
 namespace MessiahSandbox
 {
-    class Star
+    class Star : CelestialBody
     {
         private string _name;
         private string _type;
-        private Color _color;
 
-        private double _mass;
         private double _radius;
         private double _volume;
         private double _density;
-        private double _gravity;
         private double _luminosity;
         private double _temperature;
-
-        private Vector2 _position;
-        private Vector2 _origin;
-
-        private Texture2D _texture;
-
 
         /// <summary>
         /// Creates a star with realistic values all based around the mass and radius.
@@ -39,13 +30,14 @@ namespace MessiahSandbox
         /// <param name="radius">
         /// The radius of the star in meters.
         /// </param>
-        public Star(string name, double mass, double radius) {
+        public Star(string name, double mass, double radius, Texture2D texture) {
             double pi = Math.PI;
-            UnitConverter uc = new UnitConverter();
+            uc = new UnitConverter();
 
             _name = name;
             _mass = mass;
             _radius = radius;
+            _texture = texture;
 
             _volume = 4.0 / 3.0 * pi * Math.Pow(_radius, 3);
             _density = _mass / _volume;
@@ -54,6 +46,9 @@ namespace MessiahSandbox
             _temperature = 5775 * Math.Sqrt(Math.Sqrt(_luminosity / Math.Pow(_radius * uc.TO_SOLAR_RADIUS, 2)));
 
             _position = new Vector2(960, 540);
+            _origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
+
+            
 
             #region Stellar Classification
 
@@ -94,6 +89,19 @@ namespace MessiahSandbox
             }
             #endregion
 
+            _info = "Name: " + _name +
+                "\nType: " + _type + " -Class" +
+                "\nMass (Solar Mass): " + _mass * uc.TO_SOLAR_MASS +
+                "\nRadius (Solar Radius): " + _radius * uc.TO_SOLAR_RADIUS +
+                "\nDiameter (KM): " + _radius * 2  * uc.TO_KILOMETER +
+                "\nDensity (g/cm^3): " + _density * uc.TO_GRAM_PER_CUBIC_CENTIMETER +
+                "\nGravity (G): " + _gravity +
+                "\nLuminosity (Solar Luminosity): " + _luminosity +
+                "\nTemperature (Kelvin): " + _temperature;
+            _size = (float)(_radius / (METERS_PER_PIXELS * 540));
+            _size = 1000;
+
+            _color = Color.Orange;
 
             Console.WriteLine(
                 "Name: {0}\n" +
@@ -106,35 +114,6 @@ namespace MessiahSandbox
                 "Luminosity (Solar Luminosity): {7}\n" +
                 "Temperature (Kelvin): {8}\n"
                 , _name, _type, _mass * uc.TO_SOLAR_MASS, _radius * uc.TO_SOLAR_RADIUS, _radius * 2, _density * uc.TO_GRAM_PER_CUBIC_CENTIMETER, _gravity, _luminosity, _temperature);
-        }
-
-        public void Draw(SpriteBatch _spriteBatch)
-        {
-            _spriteBatch.Draw(_texture, _position, null, Color.Orange, 0, _origin, 1, SpriteEffects.None, 0.5f);
-
-        }
-
-        public Texture2D Texture
-        {
-            set
-            {
-                _texture = value;
-                _origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
-            }
-        }
-
-        public double Mass
-        {
-            get { return this._mass; }
-        }
-        public Vector2 Position
-        {
-            get { return this._position; }
-        }
-        
-        public double Gravity
-        {
-            get { return this._gravity; }
         }
     }
 }
