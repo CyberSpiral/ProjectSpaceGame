@@ -25,8 +25,8 @@ namespace MessiahSandbox {
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            _graphics.PreferredBackBufferWidth = 1920;
-            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.PreferredBackBufferWidth = 1600;
+            _graphics.PreferredBackBufferHeight = 900;
             IsMouseVisible = true;
         }
 
@@ -37,6 +37,8 @@ namespace MessiahSandbox {
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _camera = new Camera();
+            _camera.Zoom = 0.00005F;
+
             Globals.font1 = Content.Load<SpriteFont>("TempFont");
             _celBodyTexture = Content.Load<Texture2D>("CelBody");
 
@@ -51,7 +53,8 @@ namespace MessiahSandbox {
             _planetList.Add(new Planet("Saturn", 5.6846 * Math.Pow(10, 26), 58232000, 0.0557, 1433449370000, _celBodyTexture, _theSun));
             _planetList.Add(new Planet("Uranus", 8.681 * Math.Pow(10, 25), 25362000, 0.0472, 2870671400000, _celBodyTexture, _theSun));
             _planetList.Add(new Planet("Neptune", 1.0243 * Math.Pow(10, 26), 24622000, 0.0086, 4498542600000, _celBodyTexture, _theSun));
-            
+
+
         }
 
         protected override void UnloadContent() {
@@ -71,8 +74,7 @@ namespace MessiahSandbox {
             _camera.Position = _theSun.Position;//_planetList[0].Position;
 
 
-
-            if(_keyboard.IsKeyDown(Keys.W))
+            if (_keyboard.IsKeyDown(Keys.W))
             {
                 _camera.Move(new Vector2(0, -5 / _camera.Zoom)); 
             }
