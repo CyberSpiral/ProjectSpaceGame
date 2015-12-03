@@ -18,22 +18,22 @@ namespace MessiahSandbox
 
 
         /// <summary>
-        /// Creates a planet with realistic properties based on masss, radius, eccentricity and its semi-major axis and star.
+        /// Creates a satellite with realistic properties based on masss, radius, eccentricity and its semi-major axis and star.
         /// </summary>
         /// <param name="name">
-        /// Name of the planet.
+        /// Name of the satellite.
         /// </param>
         /// <param name="mass">
-        /// Mass of the planet in kilograms.
+        /// Mass of the satellite in kilograms.
         /// </param>
         /// <param name="radius">
-        /// Radius of the planet in meters.
+        /// Radius of the satellite in meters.
         /// </param>
         /// <param name="eccentricity">
-        /// Eccentricity of the planet's orbit.
+        /// Eccentricity of the satellite's orbit.
         /// </param>
         /// <param name="semiMajorAxis">
-        /// The semi-major axis of the planet's orbit in meters.
+        /// The semi-major axis of the satellite's orbit in meters.
         /// </param>
         /// <param name="distanceMultiplier">
         /// How many times further it apears to be from the central body.
